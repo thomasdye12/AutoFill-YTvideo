@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile Form</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #89f7fe, #66a6ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .card h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .form-field {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    .submit-btn {
+      padding: 10px 20px;
+      background-color: #66a6ff;
+      border: none;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .submit-btn:hover {
+      background-color: #558de8;
+    }
+
+    .hidden-field {
+      position: absolute;
+      left: -9999px;
+      top: -9999px;
+      height: 0;
+      width: 0;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Tell us your name</h2>
+    <form id="userForm" action="/submit" method="post">
+      <input class="form-field" type="text" name="name" autocomplete="name" placeholder="Your Name">
+      <input class="hidden-field" type="email" name="email" autocomplete="email">
+      <input class="hidden-field" type="tel" name="phone" autocomplete="tel">
+      <input class="hidden-field" type="text" name="address1" autocomplete="address-line1">
+      <input class="hidden-field" type="text" name="address2" autocomplete="address-line2">
+      <input class="hidden-field" type="text" name="postalcode" autocomplete="postal-code">
+      <input class="hidden-field" type="text" name="country" autocomplete="country-name">
+      <input class="hidden-field" type="text" name="company" autocomplete="organization">
+
+      <button class="submit-btn" type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('userForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // prevent actual form submission
+
+      const form = event.target;
+      const data = {
+        name: form.elements['name'].value,
+        email: form.elements['email'].value,
+        phone: form.elements['phone'].value,
+        address1: form.elements['address1'].value,
+        address2: form.elements['address2'].value,
+        postalcode: form.elements['postalcode'].value,
+        country: form.elements['country'].value,
+        company: form.elements['company'].value,
+      };
+
+      alert(
+        `Name: ${data.name}\n` +
+        `Email: ${data.email}\n` +
+        `Phone: ${data.phone}\n` +
+        `Address 1: ${data.address1}\n` +
+        `Address 2: ${data.address2}\n` +
+        `Postal Code: ${data.postalcode}\n` +
+        `Country: ${data.country}\n` +
+        `Company: ${data.company}`
+      );
+    });
+  </script>
+
+</body>
+</html>
